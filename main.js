@@ -44,19 +44,21 @@ let listProduct = [];
 let keyLocalStorageListSP = "DANHSACHSP";
 let keyLocalStorageItemCart = "DANHSACHITEMCART";
 
-function setData() {
-  localStorage.setItem(keyLocalStorageListSP, JSON.stringify(listData));
-  localStorage.setItem(keyLocalStorageItemCart, JSON.stringify(listProduct));
+function setData(param1, param2) {
+  localStorage.setItem(keyLocalStorageListSP, JSON.stringify(param1));
+  localStorage.setItem(keyLocalStorageItemCart, JSON.stringify(param2));
 }
-setData();
+setData(listData, listProduct);
 renderProduct();
 function getData() {
   return JSON.parse(localStorage.getItem(keyLocalStorageListSP));
 }
+function getDataCart() {
+  return JSON.parse(localStorage.getItem(keyLocalStorageItemCart));
+}
 
 function renderProduct() {
   const shoes = getData();
-
   let shoesDat = shoes.map((shoe) => {
     return `<div class="product">
       <div class="product_header">
@@ -78,10 +80,26 @@ function renderProduct() {
       </div>
     </div>`;
   });
-
   document.querySelector(".container").innerHTML = shoesDat.join("");
 }
 
+function renderProductInCart() {
+  const shoesInCart = getDataCart();
+  let numberIncart = shoesInCart.reduce(
+    (total, currentValue) => total + currentValue.quantity,
+    0
+  );
+  if (numberIncart === 1) {
+    const element = document.querySelectorAll(".item");
+    const newChild = document.createElement("div");
+    newChild.className = "item_count";
+    newChild.textContent = numberIncart;
+    element[5].appendChild(newChild);
+  } else {
+    const element = document.querySelector(".item_count ");
+    element.textContent = numberIncart;
+  }
+}
 function handleClick(event, id) {
   event.preventDefault();
   addProduct(id);
@@ -94,7 +112,7 @@ function addProduct(id) {
     alert("sold out");
     return;
   }
-  let itemCart = JSON.parse(localStorage.getItem(keyLocalStorageItemCart));
+  let itemCart = getDataCart();
   for (let i = 0; i < itemCart.length; i++) {
     if (itemCart[i].id === id) {
       num = i;
@@ -107,7 +125,7 @@ function addProduct(id) {
   }
   item[id - 1].value.quantity -= 1;
 
-  localStorage.setItem(keyLocalStorageItemCart, JSON.stringify(itemCart));
-  localStorage.setItem(keyLocalStorageListSP, JSON.stringify(item));
+  setData(item, itemCart);
   renderProduct();
+  renderProductInCart();
 }

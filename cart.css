@@ -1,0 +1,32 @@
+.itemCart {
+  width: 80%;
+  border: 1px solid #00bcd4;
+  background-color: #efefef33;
+  padding: 15px;
+  overflow: auto;
+  margin: auto;
+  border-radius: 4px;
+}
+.itemCart td {
+  font-size: 18px;
+  text-align: center;
+}
+.left_text {
+  text-align: left;
+  width: 120px;
+}
+.cc {
+  padding-left: 20px;
+  width: 500px;
+  text-align: left !important;
+}
+.itemCart img {
+  display: inline-block;
+  width: 120px;
+  height: auto;
+}
+
+span {
+  cursor: pointer;
+  margin: 0 8px;
+}

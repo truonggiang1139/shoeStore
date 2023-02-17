@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web bán giày</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     />
     <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="homePage.css" />
+    <link rel="stylesheet" href="cart.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -40,8 +40,37 @@
           </div>
         </div>
       </div>
-      <div class="container"></div>
+      <div class="container">
+        <table class="itemCart">
+          <tr>
+            <th class="left_text">Product Name</th>
+            <th></th>
+            <th>Quantity</th>
+            <th>SubTotal</th>
+            <th>Total</th>
+            <th>Clear Cart</th>
+          </tr>
+
+          <tr>
+            <td>
+              <img
+                class="left_text"
+                src="asset/029d86dd-1549-4221-a18b-25d165998d1f.webp"
+                alt=""
+              />
+            </td>
+            <td class="cc">Nike Air Force 1</td>
+            <td>
+              <span>-</span>
+              <span>3</span>
+              <span>+</span>
+            </td>
+            <td>$ 300</td>
+            <td>$ 900</td>
+            <td><i class="fa-solid fa-trash"></i></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </body>
-  <script src="main.js"></script>
 </html>

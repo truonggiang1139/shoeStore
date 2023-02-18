@@ -48,8 +48,7 @@ function setData(param1, param2) {
   localStorage.setItem(keyLocalStorageListSP, JSON.stringify(param1));
   localStorage.setItem(keyLocalStorageItemCart, JSON.stringify(param2));
 }
-setData(listData, listProduct);
-renderProduct();
+
 function getData() {
   return JSON.parse(localStorage.getItem(keyLocalStorageListSP));
 }
@@ -58,7 +57,11 @@ function getDataCart() {
 }
 
 function renderProduct() {
-  const shoes = getData();
+  let shoes = getData();
+  if (shoes === null) {
+    shoes = listData;
+    setData(listData, listProduct);
+  }
   let shoesDat = shoes.map((shoe) => {
     return `<div class="product">
       <div class="product_header">
@@ -83,22 +86,19 @@ function renderProduct() {
   document.querySelector(".container").innerHTML = shoesDat.join("");
 }
 
-function renderProductInCart() {
+function renderNumberInCart() {
   const shoesInCart = getDataCart();
+  if (shoesInCart.length === 0) {
+    return;
+  }
   let numberIncart = shoesInCart.reduce(
     (total, currentValue) => total + currentValue.quantity,
     0
   );
-  if (numberIncart === 1) {
-    const element = document.querySelectorAll(".item");
-    const newChild = document.createElement("div");
-    newChild.className = "item_count";
-    newChild.textContent = numberIncart;
-    element[5].appendChild(newChild);
-  } else {
-    const element = document.querySelector(".item_count ");
-    element.textContent = numberIncart;
-  }
+  document.querySelector(".cart").innerHTML = `
+  <i class="fa-solid fa-cart-shopping"></i>
+  <div class="item_count">${numberIncart}</div>
+  `;
 }
 function handleClick(event, id) {
   event.preventDefault();
@@ -127,5 +127,8 @@ function addProduct(id) {
 
   setData(item, itemCart);
   renderProduct();
-  renderProductInCart();
+  renderNumberInCart();
 }
+
+renderProduct();
+renderNumberInCart();

@@ -53,11 +53,17 @@ span:nth-child(odd) {
 }
 
 .payment {
-  width: 65%;
+  width: 70%;
   margin: auto;
   text-align: right;
+  font-size: 18px;
+}
+.Total{
+  font-weight: bold;
+  
 }
 .btn_buy button {
+  margin-top: 8px;
   cursor: pointer;
   background-color: rgb(65, 131, 88);
   color: white;

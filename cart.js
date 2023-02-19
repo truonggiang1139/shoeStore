@@ -27,6 +27,7 @@ function renderProductInCart() {
     document.querySelector(
       ".container"
     ).innerHTML = `<h3 class="empty_cart">Chưa có sản phẩm trong giỏ hàng của bạn.</h3>`;
+    document.querySelector('.payment').innerHTML=``;
     return;
   }
   let shoeData = shoeIncart.map(
@@ -54,9 +55,25 @@ function renderProductInCart() {
             })"></i></td>
           </tr>`
   );
+  
   document.querySelector(".itemCart").innerHTML = header.concat(
     shoeData.join("")
+    
   );
+  renderPayment();
+ 
+}
+function renderPayment(){
+  const shoeIncart=getDataCart();
+  console.log(shoeIncart)
+  const shoeInshop=getData()
+  let total=0;
+  for (let i=0;i<shoeIncart.length;i++){
+    total+=(shoeIncart[i].quantity*shoeInshop[shoeIncart[i].id-1].value.price);
+  }
+  const element=`<div class="Total">Total: $${total.toLocaleString("en-US")}</div>
+  <div class="btn_buy"><button>Buy</button></div>`
+  document.querySelector('.payment').innerHTML=element
 }
 
 function addQuantity(id) {
@@ -78,7 +95,6 @@ function addQuantity(id) {
 function subQuantity(id) {
   let itemCart = getDataCart();
   let itemShop = getData();
-  console.log(itemShop);
   itemCart.map((item) =>
     item.id === id
       ? (itemShop[item.id - 1].value.quantity += 1) && (item.quantity -= 1)

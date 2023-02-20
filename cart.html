@@ -64,8 +64,8 @@
                 Họ và tên<span class="required">*</span>
               </div>
               <div class="form_body_group_inputs">
-                <input type="text" placeholder="Họ" />
-                <input type="text" placeholder="Tên" />
+                <input type="text" placeholder="Họ" id="first_name" />
+                <input type="text" placeholder="Tên" id="last_name" />
               </div>
             </div>
             <div class="form_body_group">
@@ -74,6 +74,7 @@
               </div>
               <input
                 class="form_body_group_input"
+                id="email"
                 type="text"
                 placeholder="Email"
               />
@@ -84,6 +85,7 @@
               </div>
               <input
                 class="form_body_group_input"
+                id="phoneNumber"
                 type="text"
                 placeholder="Số điện thoại"
               />
@@ -122,7 +124,9 @@
               <button class="btn_cancel_order" onclick="handleClose(event)">
                 Hủy
               </button>
-              <button class="btn_submit_order">Xác nhận</button>
+              <button class="btn_submit_order" onclick="handleSubmit(event)">
+                Xác nhận
+              </button>
             </div>
           </div>
         </form>

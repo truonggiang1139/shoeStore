@@ -174,5 +174,12 @@ function handleOpen(e) {
   e.preventDefault();
   document.querySelector(".modal").style.display = "flex";
 }
+
+function handleSubmit(e) {
+  e.preventDefault();
+  let firstName = document.querySelector("#first_name").value;
+  let lastName = document.querySelector("#last_name").value;
+  let num = document.querySelector("#provinces").selectedIndex;
+}
 renderProductInCart();
 getDataProvinces();

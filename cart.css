@@ -93,7 +93,7 @@
 
 .modal_body {
   margin: auto;
-  margin-top: 200px;
+  margin-top: 30px;
   background-color: white;
   z-index: 1;
   border-radius: 5px;
@@ -145,7 +145,7 @@
 .form_body_group_select {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 .form_body_group select {
   width: 32%;
@@ -170,6 +170,10 @@ textarea {
   border-radius: 5px;
   resize: none;
   outline: none;
+}
+.form_body_massage {
+  margin-top: 8px;
+  height: 20px;
 }
 .form_footer {
   border-top: 2px solid rgb(230, 230, 230);

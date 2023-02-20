@@ -27,7 +27,7 @@ function renderProductInCart() {
     document.querySelector(
       ".container"
     ).innerHTML = `<h3 class="empty_cart">Chưa có sản phẩm trong giỏ hàng của bạn.</h3>`;
-    document.querySelector('.payment').innerHTML=``;
+    document.querySelector(".payment").innerHTML = ``;
     return;
   }
   let shoeData = shoeIncart.map(
@@ -55,25 +55,25 @@ function renderProductInCart() {
             })"></i></td>
           </tr>`
   );
-  
+
   document.querySelector(".itemCart").innerHTML = header.concat(
     shoeData.join("")
-    
   );
   renderPayment();
- 
 }
-function renderPayment(){
-  const shoeIncart=getDataCart();
-  console.log(shoeIncart)
-  const shoeInshop=getData()
-  let total=0;
-  for (let i=0;i<shoeIncart.length;i++){
-    total+=(shoeIncart[i].quantity*shoeInshop[shoeIncart[i].id-1].value.price);
+function renderPayment() {
+  const shoeIncart = getDataCart();
+  const shoeInshop = getData();
+  let total = 0;
+  for (let i = 0; i < shoeIncart.length; i++) {
+    total +=
+      shoeIncart[i].quantity * shoeInshop[shoeIncart[i].id - 1].value.price;
   }
-  const element=`<div class="Total">Total: $${total.toLocaleString("en-US")}</div>
-  <div class="btn_buy"><button>Buy</button></div>`
-  document.querySelector('.payment').innerHTML=element
+  const element = `<div class="Total">Total: $${total.toLocaleString(
+    "en-US"
+  )}</div>
+  <div class="btn_buy" ><button onclick="handleOpen(event)">Buy</button></div>`;
+  document.querySelector(".payment").innerHTML = element;
 }
 
 function addQuantity(id) {
@@ -118,4 +118,61 @@ function clearProduct(id) {
   setData(itemShop, itemCart);
   renderProductInCart();
 }
+
+async function getDataProvinces() {
+  let responsive = await fetch("https://provinces.open-api.vn/api/");
+  let data = await responsive.json();
+  renderProvinces(data);
+}
+function renderProvinces(data) {
+  let dataProvinces = data.map(
+    (item) => `<option value=${item.code}> ${item.name}</option>`
+  );
+  document.querySelector("#provinces").innerHTML += dataProvinces.join("");
+}
+function renderDistricts(data) {
+  let dataDistricts = data.map(
+    (item) => `<option value=${item.code}> ${item.name}</option>`
+  );
+  document.querySelector("#districts").innerHTML += dataDistricts.join("");
+}
+
+function renderWards(data) {
+  let dataWards = data.map(
+    (item) => `<option value=${item.code}> ${item.name}</option>`
+  );
+  document.querySelector("#wards").innerHTML += dataWards.join("");
+}
+
+async function handleChangeProvinces(e) {
+  let responsive = await fetch(
+    `https://provinces.open-api.vn/api/p/${e}?depth=2`
+  );
+  let data = await responsive.json();
+  document.querySelector("#districts").innerHTML =
+    "<option selected disabled hidden>--Chọn Huyện/Quận--</option>";
+  document.querySelector("#wards").innerHTML =
+    "<option selected disabled hidden>--Chọn Phường/Xã--</option>";
+  renderDistricts(data.districts);
+}
+
+async function handleChangeDistricts(e) {
+  let responsive = await fetch(
+    `https://provinces.open-api.vn/api/d/${e}?depth=2`
+  );
+  let data = await responsive.json();
+  document.querySelector("#wards").innerHTML =
+    "<option selected disabled hidden>--Chọn Phường/Xã--</option>";
+  renderWards(data.wards);
+}
+
+function handleClose(e) {
+  e.preventDefault();
+  document.querySelector(".modal").style.display = "none";
+}
+function handleOpen(e) {
+  e.preventDefault();
+  document.querySelector(".modal").style.display = "flex";
+}
 renderProductInCart();
+getDataProvinces();

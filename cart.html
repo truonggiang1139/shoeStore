@@ -43,8 +43,89 @@
       <div class="container">
         <table class="itemCart"></table>
       </div>
-      <div class="payment">
-        
+      <div class="payment"></div>
+    </div>
+    <div class="modal">
+      <div class="modal_overlay"></div>
+      <div class="modal_body">
+        <form action="" class="form">
+          <div class="form_header">
+            <div class="form_title">Thông tin người mua</div>
+            <div>
+              <i
+                class="fa-solid fa-xmark btn_close"
+                onclick="handleClose(event)"
+              ></i>
+            </div>
+          </div>
+          <div class="form_body">
+            <div class="form_body_group">
+              <div class="form_body_group_label">
+                Họ và tên<span class="required">*</span>
+              </div>
+              <div class="form_body_group_inputs">
+                <input type="text" placeholder="Họ" />
+                <input type="text" placeholder="Tên" />
+              </div>
+            </div>
+            <div class="form_body_group">
+              <div class="form_body_group_label">
+                Email<span class="required">*</span>
+              </div>
+              <input
+                class="form_body_group_input"
+                type="text"
+                placeholder="Email"
+              />
+            </div>
+            <div class="form_body_group">
+              <div class="form_body_group_label">
+                Số điện thoại<span class="required">*</span>
+              </div>
+              <input
+                class="form_body_group_input"
+                type="text"
+                placeholder="Số điện thoại"
+              />
+            </div>
+            <div class="form_body_group">
+              <div class="form_body_group_label">
+                Địa chỉ<span class="required">*</span>
+              </div>
+              <div class="form_body_group_select">
+                <select id="provinces" onchange="handleChangeProvinces(value)">
+                  <option selected disabled hidden>
+                    --Chọn Tỉnh/Thành phố--
+                  </option>
+                </select>
+                <select id="districts" onchange="handleChangeDistricts(value)">
+                  <option selected disabled hidden>--Chọn Huyện/Quận--</option>
+                </select>
+                <select id="wards">
+                  <option selected disabled hidden>--Chọn Phường/Xã--</option>
+                </select>
+              </div>
+              <input
+                class="form_body_group_input"
+                type="text"
+                placeholder="Số nhà"
+              />
+            </div>
+            <div class="form_body_group">
+              <div class="form_body_group_label">Lời nhắn</div>
+              <textarea></textarea>
+            </div>
+          </div>
+
+          <div class="form_footer">
+            <div class="footer_btn">
+              <button class="btn_cancel_order" onclick="handleClose(event)">
+                Hủy
+              </button>
+              <button class="btn_submit_order">Xác nhận</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </body>

@@ -171,9 +171,17 @@ textarea {
   resize: none;
   outline: none;
 }
-.form_body_massage {
-  margin-top: 8px;
-  height: 20px;
+.form_body_group_message {
+  font-weight:500;
+  color: rgb(255,109,109);
+  margin: 4px 0;
+  font-size: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.form_body_group_message div {
+  width: 48%;
 }
 .form_footer {
   border-top: 2px solid rgb(230, 230, 230);

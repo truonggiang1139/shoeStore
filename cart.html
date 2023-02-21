@@ -93,7 +93,7 @@
                 placeholder="Email"
                 oninput="handleChangeInput(id)"
               />
-              <div class="form_body_group_message" id="Email_msg"></div>
+              <div class="form_body_group_message" id="email_msg"></div>
             </div>
             <div class="form_body_group">
               <div class="form_body_group_label">
@@ -113,23 +113,35 @@
                 Địa chỉ<span class="required">*</span>
               </div>
               <div class="form_body_group_select">
-                <select id="provinces" onchange="handleChangeProvinces(value)">
+                <select
+                  id="provinces"
+                  onchange="handleChangeProvinces(value); handleChangeInput('address');"
+                >
                   <option selected disabled hidden>Chọn Tỉnh/Thành phố</option>
                 </select>
-                <select id="districts" onchange="handleChangeDistricts(value)">
+                <select
+                  id="districts"
+                  onchange="handleChangeDistricts(value); handleChangeInput('address');"
+                >
                   <option selected disabled hidden>Chọn Huyện/Quận</option>
                 </select>
-                <select id="wards">
+                <select id="wards" onchange="handleChangeInput('address')">
                   <option selected disabled hidden>Chọn Phường/Xã</option>
                 </select>
+              </div>
+              <div class="abc">
+                <div class="form_body_group_message" id="provinces_msg"></div>
+                <div class="form_body_group_message" id="districts_msg"></div>
+                <div class="form_body_group_message" id="wards_msg"></div>
               </div>
               <input
                 class="form_body_group_input"
                 id="house_num"
                 type="text"
                 placeholder="Số nhà"
+                oninput="handleChangeInput('address')"
               />
-              <div class="form_body_group_message"></div>
+              <div class="form_body_group_message" id="address_msg"></div>
             </div>
             <div class="form_body_group">
               <div class="form_body_group_label">Lời nhắn</div>

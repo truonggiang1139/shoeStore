@@ -93,7 +93,6 @@
 
 .modal_body {
   margin: auto;
-  margin-top: 30px;
   background-color: white;
   z-index: 1;
   border-radius: 5px;
@@ -142,10 +141,17 @@
   border-radius: 5px;
   outline: none;
 }
+
 .form_body_group_select {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+}
+.abc {
+  display: flex;
+  justify-content: space-between;
+}
+.abc div {
+  width: 32%;
 }
 .form_body_group select {
   width: 32%;

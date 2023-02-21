@@ -48,11 +48,10 @@ function renderProductInCart() {
             </td>
             <td>$ ${shoeInshop[item.id - 1].value.price}</td>
             <td>$ ${(
-              shoeInshop[item.id - 1].value.price * item.quantity
-            ).toLocaleString("en-US")}</td>
-            <td ><i class="fa-solid fa-trash clear" onclick="clearProduct(${
-              item.id
-            })"></i></td>
+        shoeInshop[item.id - 1].value.price * item.quantity
+      ).toLocaleString("en-US")}</td>
+            <td ><i class="fa-solid fa-trash clear" onclick="clearProduct(${item.id
+      })"></i></td>
           </tr>`
   );
 
@@ -112,7 +111,7 @@ function clearProduct(id) {
   itemCart = itemCart.filter((item) =>
     item.id === id
       ? (itemShop[id - 1].value.quantity += item.quantity) &&
-        (item.quantity = 0)
+      (item.quantity = 0)
       : item
   );
   setData(itemShop, itemCart);
@@ -150,9 +149,9 @@ async function handleChangeProvinces(e) {
   );
   let data = await responsive.json();
   document.querySelector("#districts").innerHTML =
-    "<option selected disabled hidden>--Chọn Huyện/Quận--</option>";
+    "<option selected disabled hidden>Chọn Huyện/Quận</option>";
   document.querySelector("#wards").innerHTML =
-    "<option selected disabled hidden>--Chọn Phường/Xã--</option>";
+    "<option selected disabled hidden>Chọn Phường/Xã</option>";
   renderDistricts(data.districts);
 }
 
@@ -162,7 +161,7 @@ async function handleChangeDistricts(e) {
   );
   let data = await responsive.json();
   document.querySelector("#wards").innerHTML =
-    "<option selected disabled hidden>--Chọn Phường/Xã--</option>";
+    "<option selected disabled hidden>Chọn Phường/Xã</option>";
   renderWards(data.wards);
 }
 
@@ -177,23 +176,59 @@ function handleOpen(e) {
 
 function handleSubmit(e) {
   e.preventDefault();
-  let person = getInfoData();
 
+  validate()
+
+
+
+
+
+
+}
+
+function validate() {
+  let person = getInfoData();
   if (person.firstName === "") {
-    document
-      .querySelectorAll(".form_body_group")[0]
-      .querySelectorAll(".form_body_group_message")[0].innerText = "Mời nhập";
+    setErrorMessage('first_name', 'Vui lòng nhập họ');
   }
   if (person.lastName === "") {
-    document
-      .querySelectorAll(".form_body_group")[0]
-      .querySelectorAll(".form_body_group_message")[1].innerText = "Mời nhập";
+    setErrorMessage('last_name', 'Vui lòng nhập tên');
+  }
+  if (person.email === "") {
+    setErrorMessage('email', 'Địa chỉ Email không được để trống');
+  }
+  else if (!checkEMail(person.email)) {
+    setErrorMessage('email', 'Vui lòng nhập lại địa chỉ Email');
+  }
+  if (person.phone === "") {
+    setErrorMessage('phone', 'Số điện thoại không được để trống');
+  }
+  else if (isNaN(person.phone)) {
+    setErrorMessage('phone', 'Vui lòng nhập lại số điện thoại');
+  }
+  if (person.province === "Chọn Tỉnh/Thành phố") {
+    setErrorMessage('provinces', 'Vui lòng chọn tỉnh thành');
+  }
+  if (person.district === 'Chọn Huyện/Quận') {
+    setErrorMessage('districts', 'Vui lòng chọn huyện quận');
+  }
+  if (person.ward === 'Chọn Phường/Xã') {
+    setErrorMessage('wards', 'Vui lòng chọn phường xã');
   }
 }
 
+function setErrorMessage(param, msg) {
+  document.querySelector(`#${param}_msg`).innerText = msg;
+  document.querySelector(`#${param}`).style.border = '2px solid #ff6d6d';
+}
+function checkEMail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email)
+}
 function handleChangeInput(id) {
-  // document.querySelector(`#${id}_msg`).innerText = "";
-  console.log(id);
+  document.querySelector(`#${id}`).style.border = '1px solid #dbdbdb';
+
+  document.querySelector(`#${id}_msg`).innerText = '';
 }
 function getOptionSelected(param) {
   let selectedOption = param.options[param.selectedIndex];

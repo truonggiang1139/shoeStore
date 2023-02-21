@@ -64,12 +64,22 @@
                 Họ và tên<span class="required">*</span>
               </div>
               <div class="form_body_group_inputs">
-                <input type="text" placeholder="Họ" id="first_name" />
-                <input type="text" placeholder="Tên" id="last_name" />
+                <input
+                  type="text"
+                  placeholder="Họ"
+                  id="first_name"
+                  oninput="handleChangeInput(id)"
+                />
+                <input
+                  type="text"
+                  placeholder="Tên"
+                  id="last_name"
+                  oninput="handleChangeInput(id)"
+                />
               </div>
-              <div class="form_body_group_message">
-                <div>Loi</div>
-                <div>Loi</div>
+              <div class="message_group">
+                <div class="form_body_group_message" id="first_name_msg"></div>
+                <div class="form_body_group_message" id="last_name_msg"></div>
               </div>
             </div>
             <div class="form_body_group">
@@ -81,7 +91,9 @@
                 id="email"
                 type="text"
                 placeholder="Email"
+                oninput="handleChangeInput(id)"
               />
+              <div class="form_body_group_message" id="Email_msg"></div>
             </div>
             <div class="form_body_group">
               <div class="form_body_group_label">
@@ -89,10 +101,12 @@
               </div>
               <input
                 class="form_body_group_input"
-                id="phoneNumber"
+                id="phone"
+                oninput="handleChangeInput(id)"
                 type="text"
                 placeholder="Số điện thoại"
               />
+              <div class="form_body_group_message" id="phone_msg"></div>
             </div>
             <div class="form_body_group">
               <div class="form_body_group_label">
@@ -100,22 +114,22 @@
               </div>
               <div class="form_body_group_select">
                 <select id="provinces" onchange="handleChangeProvinces(value)">
-                  <option selected disabled hidden>
-                    --Chọn Tỉnh/Thành phố--
-                  </option>
+                  <option selected disabled hidden>Chọn Tỉnh/Thành phố</option>
                 </select>
                 <select id="districts" onchange="handleChangeDistricts(value)">
-                  <option selected disabled hidden>--Chọn Huyện/Quận--</option>
+                  <option selected disabled hidden>Chọn Huyện/Quận</option>
                 </select>
                 <select id="wards">
-                  <option selected disabled hidden>--Chọn Phường/Xã--</option>
+                  <option selected disabled hidden>Chọn Phường/Xã</option>
                 </select>
               </div>
               <input
                 class="form_body_group_input"
+                id="house_num"
                 type="text"
                 placeholder="Số nhà"
               />
+              <div class="form_body_group_message"></div>
             </div>
             <div class="form_body_group">
               <div class="form_body_group_label">Lời nhắn</div>

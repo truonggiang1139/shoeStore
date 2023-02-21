@@ -177,9 +177,50 @@ function handleOpen(e) {
 
 function handleSubmit(e) {
   e.preventDefault();
+  let person = getInfoData();
+
+  if (person.firstName === "") {
+    document
+      .querySelectorAll(".form_body_group")[0]
+      .querySelectorAll(".form_body_group_message")[0].innerText = "Mời nhập";
+  }
+  if (person.lastName === "") {
+    document
+      .querySelectorAll(".form_body_group")[0]
+      .querySelectorAll(".form_body_group_message")[1].innerText = "Mời nhập";
+  }
+}
+
+function handleChangeInput(id) {
+  // document.querySelector(`#${id}_msg`).innerText = "";
+  console.log(id);
+}
+function getOptionSelected(param) {
+  let selectedOption = param.options[param.selectedIndex];
+  let selectedText = selectedOption.textContent;
+  return selectedText;
+}
+function getInfoData() {
   let firstName = document.querySelector("#first_name").value;
   let lastName = document.querySelector("#last_name").value;
-  let num = document.querySelector("#provinces").selectedIndex;
+  let name = `${firstName} ${lastName}`;
+  let email = document.querySelector("#email").value;
+  let phone = document.querySelector("#phone").value;
+  let province = getOptionSelected(document.querySelector("#provinces"));
+  let district = getOptionSelected(document.querySelector("#districts"));
+  let ward = getOptionSelected(document.querySelector("#wards"));
+  let houseNum = document.querySelector("#house_num").value;
+
+  return (person = {
+    firstName,
+    lastName,
+    email,
+    phone,
+    province,
+    district,
+    ward,
+    houseNum,
+  });
 }
 renderProductInCart();
 getDataProvinces();

@@ -1,0 +1,105 @@
+.itemBill {
+  width: 80%;
+  padding: 15px;
+  overflow: auto;
+  margin: auto;
+  margin-left: 30px;
+  border-radius: 4px;
+  border-collapse: collapse;
+}
+.itemBill td {
+  text-align: center;
+  padding: 16px;
+  color: rgb(125, 125, 125);
+}
+
+.itemBill td a:link {
+  text-decoration: none;
+}
+
+.itemBill td a:visited {
+  color: rgb(125, 125, 125);
+}
+.itemBill td a:hover {
+  color: black;
+}
+.return_item {
+  color: crimson;
+  cursor: pointer;
+}
+.return_item:hover {
+  opacity: 0.7;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+
+.modal_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_body {
+  margin: auto;
+  background-color: white;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.order_detail {
+  width: 800px;
+}
+.order_detail_header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.btn_close {
+  color: gray;
+  cursor: pointer;
+}
+.btn_close:hover {
+  opacity: 0.7;
+}
+
+.order_detail_body {
+  width: 95%;
+  padding: 15px;
+  overflow: auto;
+  margin: auto;
+  border-radius: 4px;
+  border-collapse: collapse;
+}
+.order_detail_body tr td {
+  color: rgb(125, 125, 125);
+}
+.order_detail_body tr td,
+tr th {
+  padding: 8px 0;
+}
+.order_detail_body tr:nth-child(n + 1) {
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+.order_detail_body td {
+  font-size: 18px;
+  text-align: center;
+}
+.product_img img {
+  width: 70px;
+}
+.total_bill {
+  padding: 24px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: bold;
+}

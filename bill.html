@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="bill.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="leftHeader">
+          <div class="item">
+            <img src="Logo_NIKE.svg.png" alt="" height="20px" />
+          </div>
+          <div class="item">
+            <a href="">Nike</a>
+          </div>
+        </div>
+        <div class="rightHeader">
+          <div class="item">
+            <a href="/">HOME</a>
+          </div>
+          <div class="item">
+            <a href="">ABOUT</a>
+          </div>
+          <div class="item">
+            <a href="/bill.html">BILLS</a>
+          </div>
+          <div class="item">
+            <a href="/cart.html" class="cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <table class="itemBill"></table>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modal_overlay"></div>
+      <div class="modal_body">
+        <div class="order_detail">
+          <div class="order_detail_header">
+            <h3>Order List Detail</h3>
+            <div>
+              <i
+                class="fa-solid fa-xmark btn_close"
+                onclick="closeOrderDetail()"
+              ></i>
+            </div>
+          </div>
+          <table class="order_detail_body"></table>
+          <div class="order_detail_footer">
+            <div class="total_bill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="bill.js"></script>
+</html>

@@ -44,9 +44,6 @@
   color: rgb(159, 167, 171);
 }
 
-.empty_cart {
-  text-align: center;
-}
 .clear {
   cursor: pointer;
   padding: 16px;
@@ -81,7 +78,7 @@
   right: 0;
   left: 0;
   bottom: 0;
-  display: flex;
+  display: none;
 }
 
 .modal_overlay {

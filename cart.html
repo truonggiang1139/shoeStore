@@ -31,7 +31,7 @@
             <a href="">ABOUT</a>
           </div>
           <div class="item">
-            <a href="">BILLS</a>
+            <a href="/bill.html">BILLS</a>
           </div>
           <div class="item">
             <a href="/cart.html" class="cart">
@@ -115,17 +115,17 @@
               <div class="form_body_group_select">
                 <select
                   id="provinces"
-                  onchange="handleChangeProvinces(value); handleChangeInput('address');"
+                  onchange="handleChangeProvinces(value); handleChangeInput(id);"
                 >
                   <option selected disabled hidden>Chọn Tỉnh/Thành phố</option>
                 </select>
                 <select
                   id="districts"
-                  onchange="handleChangeDistricts(value); handleChangeInput('address');"
+                  onchange="handleChangeDistricts(value); handleChangeInput(id);"
                 >
                   <option selected disabled hidden>Chọn Huyện/Quận</option>
                 </select>
-                <select id="wards" onchange="handleChangeInput('address')">
+                <select id="wards" onchange="handleChangeInput(id)">
                   <option selected disabled hidden>Chọn Phường/Xã</option>
                 </select>
               </div>
@@ -136,10 +136,10 @@
               </div>
               <input
                 class="form_body_group_input"
-                id="house_num"
+                id="address"
                 type="text"
                 placeholder="Số nhà"
-                oninput="handleChangeInput('address')"
+                oninput="handleChangeInput(id)"
               />
               <div class="form_body_group_message" id="address_msg"></div>
             </div>

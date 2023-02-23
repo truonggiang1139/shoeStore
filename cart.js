@@ -26,7 +26,7 @@ function renderProductInCart() {
   if (shoeIncart.length === 0) {
     document.querySelector(
       ".container"
-    ).innerHTML = `<h3 class="empty_cart">Chưa có sản phẩm trong giỏ hàng của bạn.</h3>`;
+    ).innerHTML = `<img src="https://gbsmegamart.com/public/cartimage.png" alt="">`;
     document.querySelector(".payment").innerHTML = ``;
     return;
   }
@@ -48,11 +48,17 @@ function renderProductInCart() {
             </td>
             <td>$ ${shoeInshop[item.id - 1].value.price}</td>
             <td>$ ${(
-        shoeInshop[item.id - 1].value.price * item.quantity
-      ).toLocaleString("en-US")}</td>
-            <td ><i class="fa-solid fa-trash clear" onclick="clearProduct(${item.id
-      })"></i></td>
-          </tr>`
+              shoeInshop[item.id - 1].value.price * item.quantity
+            ).toLocaleString("en-US")}</td>
+            <td ><i class="fa-solid fa-trash clear" onclick="clearProduct(${
+              item.id
+            })"></i></td>
+          
+          </tr>
+          <tr>
+          </tr>
+         
+          `
   );
 
   document.querySelector(".itemCart").innerHTML = header.concat(
@@ -111,7 +117,7 @@ function clearProduct(id) {
   itemCart = itemCart.filter((item) =>
     item.id === id
       ? (itemShop[id - 1].value.quantity += item.quantity) &&
-      (item.quantity = 0)
+        (item.quantity = 0)
       : item
   );
   setData(itemShop, itemCart);
@@ -176,59 +182,97 @@ function handleOpen(e) {
 
 function handleSubmit(e) {
   e.preventDefault();
-
-  validate()
-
-
-
-
-
-
-}
-
-function validate() {
   let person = getInfoData();
+  validate(person);
+
+  let countError = 0;
+  let message = document.querySelectorAll(".form_body_group_message");
+  for (let i = 0; i < message.length; i++) {
+    if (message[i].textContent !== "") {
+      countError++;
+    }
+  }
+  if (countError === 0) {
+    orderSuccess(person);
+    setData(getData(), []);
+  }
+}
+orderSuccess = (person) => {
+  const shoeIncart = getDataCart();
+  const shoeInshop = getData();
+  let total_quantity = shoeIncart.reduce(
+    (accu, item) => accu + item.quantity,
+    0
+  );
+  let total_price = 0;
+  for (let i = 0; i < shoeIncart.length; i++) {
+    total_price +=
+      shoeIncart[i].quantity * shoeInshop[shoeIncart[i].id - 1].value.price;
+  }
+  let data = {
+    id: person.id,
+    CustomerName: person.name,
+    date: person.date,
+    items: shoeIncart,
+    total_quantity: total_quantity,
+    total_price: total_price,
+    address: person.address,
+  };
+  fetchOrderSuccess(data);
+};
+
+fetchOrderSuccess = async (data) => {
+  const res = await fetch("http://localhost:3000/orders", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};
+function validate(person) {
   if (person.firstName === "") {
-    setErrorMessage('first_name', 'Vui lòng nhập họ');
+    setErrorMessage("first_name", "Vui lòng nhập họ");
   }
   if (person.lastName === "") {
-    setErrorMessage('last_name', 'Vui lòng nhập tên');
+    setErrorMessage("last_name", "Vui lòng nhập tên");
   }
   if (person.email === "") {
-    setErrorMessage('email', 'Địa chỉ Email không được để trống');
-  }
-  else if (!checkEMail(person.email)) {
-    setErrorMessage('email', 'Vui lòng nhập lại địa chỉ Email');
+    setErrorMessage("email", "Địa chỉ Email không được để trống");
+  } else if (!checkEMail(person.email)) {
+    setErrorMessage("email", "Vui lòng nhập lại địa chỉ Email");
   }
   if (person.phone === "") {
-    setErrorMessage('phone', 'Số điện thoại không được để trống');
-  }
-  else if (isNaN(person.phone)) {
-    setErrorMessage('phone', 'Vui lòng nhập lại số điện thoại');
+    setErrorMessage("phone", "Số điện thoại không được để trống");
+  } else if (isNaN(person.phone)) {
+    setErrorMessage("phone", "Vui lòng nhập lại số điện thoại");
   }
   if (person.province === "Chọn Tỉnh/Thành phố") {
-    setErrorMessage('provinces', 'Vui lòng chọn tỉnh thành');
+    setErrorMessage("provinces", "Vui lòng chọn tỉnh thành");
   }
-  if (person.district === 'Chọn Huyện/Quận') {
-    setErrorMessage('districts', 'Vui lòng chọn huyện quận');
+  if (person.district === "Chọn Huyện/Quận") {
+    setErrorMessage("districts", "Vui lòng chọn huyện quận");
   }
-  if (person.ward === 'Chọn Phường/Xã') {
-    setErrorMessage('wards', 'Vui lòng chọn phường xã');
+  if (person.ward === "Chọn Phường/Xã") {
+    setErrorMessage("wards", "Vui lòng chọn phường xã");
+  }
+  if (person.houseNum === "") {
+    setErrorMessage("address", "Địa chỉ không được để trống");
   }
 }
 
 function setErrorMessage(param, msg) {
   document.querySelector(`#${param}_msg`).innerText = msg;
-  document.querySelector(`#${param}`).style.border = '2px solid #ff6d6d';
+  document.querySelector(`#${param}`).style.border = "2px solid #ff6d6d";
 }
 function checkEMail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email)
+  return regex.test(email);
 }
 function handleChangeInput(id) {
-  document.querySelector(`#${id}`).style.border = '1px solid #dbdbdb';
+  document.querySelector(`#${id}`).style.border = "1px solid #dbdbdb";
 
-  document.querySelector(`#${id}_msg`).innerText = '';
+  document.querySelector(`#${id}_msg`).textContent = "";
 }
 function getOptionSelected(param) {
   let selectedOption = param.options[param.selectedIndex];
@@ -244,17 +288,21 @@ function getInfoData() {
   let province = getOptionSelected(document.querySelector("#provinces"));
   let district = getOptionSelected(document.querySelector("#districts"));
   let ward = getOptionSelected(document.querySelector("#wards"));
-  let houseNum = document.querySelector("#house_num").value;
+  let houseNum = document.querySelector("#address").value;
 
   return (person = {
+    id: Date.now(),
     firstName,
     lastName,
+    name: `${firstName} ${lastName}`,
     email,
     phone,
     province,
     district,
     ward,
     houseNum,
+    date: new Date().toLocaleString().split(",")[0],
+    address: `${houseNum}, ${ward}, ${district}, ${province}`,
   });
 }
 renderProductInCart();

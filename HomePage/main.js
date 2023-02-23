@@ -4,7 +4,7 @@ let listData = [
     value: {
       id: 1,
       name: "Nike Air Max 90 SE",
-      img: "./asset/029d86dd-1549-4221-a18b-25d165998d1f.webp",
+      img: "../asset/029d86dd-1549-4221-a18b-25d165998d1f.webp",
       price: 229,
       quantity: 20,
     },
@@ -14,7 +14,7 @@ let listData = [
     value: {
       id: 2,
       name: "Nike Air Force 1 '07",
-      img: "./asset/572475a8-427c-43a6-9fa9-5d41827fc848.webp",
+      img: "../asset/572475a8-427c-43a6-9fa9-5d41827fc848.webp",
       price: 205,
       quantity: 10,
     },
@@ -24,7 +24,7 @@ let listData = [
     value: {
       id: 3,
       name: "Nike Air Max Dawn SE",
-      img: "./asset/487b0832-8c6e-4cdb-a4d8-fbe24f114eae.webp",
+      img: "../asset/487b0832-8c6e-4cdb-a4d8-fbe24f114eae.webp",
       price: 220,
       quantity: 10,
     },
@@ -34,7 +34,7 @@ let listData = [
     value: {
       id: 4,
       name: "Nike SB Dunk Low Pro Premium",
-      img: "./asset/sb-dunk-low-pro-skate-shoes-NWJncN.jfif",
+      img: "../asset/sb-dunk-low-pro-skate-shoes-NWJncN.jfif",
       price: 190,
       quantity: 10,
     },
